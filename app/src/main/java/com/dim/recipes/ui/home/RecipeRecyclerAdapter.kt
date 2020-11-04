@@ -14,8 +14,7 @@ class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<Recipe> = ArrayList()
 
-
-    fun submitList(recipeList: List<Recipe>){ // for testing
+    fun submitList(recipeList: List<Recipe>) {
         items = recipeList
     }
 
@@ -26,7 +25,7 @@ class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when(holder){
+        when (holder) {
             is RecipeViewHolder -> {
                 holder.bind(items.get(position))
             }
@@ -45,8 +44,8 @@ class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         fun bind(recipe: Recipe) {
             val requestOptions = RequestOptions()
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_background)
+                .placeholder(R.drawable.ic_internet_recipe)
+                .error(R.drawable.ic_internet_recipe)
 
             Glide.with(itemView.context)
                 .applyDefaultRequestOptions(requestOptions)

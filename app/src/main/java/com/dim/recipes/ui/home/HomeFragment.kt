@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.dim.recipes.DataSource
+import com.dim.recipes.data.DummyDataSource
 import com.dim.recipes.R
+import com.dim.recipes.data.RecipeRepository
+import com.dim.recipes.ui.dashboard.DashboardViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -20,31 +19,28 @@ class HomeFragment : Fragment() {
     private lateinit var recipeAdapter: RecipeRecyclerAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
-//        homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-//        val textView: TextView = root.findViewById(R.id.text_home)
-//        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-//            textView.text = it
-//        })
         return root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initRecyclerView()
-        addDataSet()
+//        addDummyDataSet()
+        recipeAdapter.submitList(RecipeRepository.apiRecipeList.toRecipeList())
     }
 
-    private fun addDataSet(){
-        val data = DataSource.createDataSet()
+
+    private fun addDummyDataSet() { // purely for testing
+        val data = DummyDataSource.createDataSet()
         recipeAdapter.submitList(data)
     }
 
-    private fun initRecyclerView(){
+    private fun initRecyclerView() {
         recycler_view.apply {
             layoutManager = LinearLayoutManager(activity)
 

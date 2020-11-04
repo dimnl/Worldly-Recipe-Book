@@ -51,7 +51,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="1dp"
             android:layout_marginBottom="1dp"
-            android:src="@drawable/ff_wallpaper"
+            android:src="@drawable/ic_internet_recipe"
             android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="4:4"
             app:layout_constraintBottom_toBottomOf="parent"

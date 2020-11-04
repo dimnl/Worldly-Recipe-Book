@@ -1,8 +1,8 @@
-package com.dim.recipes
+package com.dim.recipes.data
 
 import com.dim.recipes.models.Recipe
 
-class DataSource {
+class DummyDataSource {
 // Dataset for testing
     companion object {
         fun createDataSet(): ArrayList<Recipe> {
