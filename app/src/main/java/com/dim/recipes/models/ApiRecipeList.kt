@@ -6,8 +6,8 @@ class ApiRecipeList(
     @SerializedName("meals") // SerializedName is from JSON structure API Request
     var apiRecipes: ArrayList<ApiRecipe>
 ) {
-    public fun toRecipeList(): ArrayList<Recipe> {
-        var recipeList = ArrayList<Recipe>()
+    fun toRecipeList(): RecipeList {
+        val recipeList = RecipeList()
 
         for (apiRecipe in apiRecipes) {
             recipeList.add(
@@ -20,15 +20,8 @@ class ApiRecipeList(
                 )
             )
         }
+
         return recipeList
-    }
-
-    fun add(apiRecipe: ApiRecipe) {
-        apiRecipes.add(apiRecipe)
-    }
-
-    fun get(i: Int): ApiRecipe {
-        return apiRecipes.get(i)
     }
 }
 

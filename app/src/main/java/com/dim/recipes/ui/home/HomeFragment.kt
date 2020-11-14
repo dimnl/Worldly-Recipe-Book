@@ -21,7 +21,7 @@ class HomeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
         return root
@@ -29,11 +29,18 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initRecyclerView()
-//        addDummyDataSet()
-        recipeAdapter.submitList(RecipeRepository.apiRecipeList.toRecipeList())
-    }
 
+        if (RecipeRepository.recipeList.isNullOrEmpty()) {
+            text_home_header_problem.visibility = View.VISIBLE
+            text_home_problem.visibility = View.VISIBLE
+        } else {
+            initRecyclerView()
+            recipeAdapter.submitList(RecipeRepository.recipeList)
+        }
+
+//        addDummyDataSet()
+//        recipeAdapter.submitList(RecipeRepository.recipeList)
+    }
 
     private fun addDummyDataSet() { // purely for testing
         val data = DummyDataSource.createDataSet()

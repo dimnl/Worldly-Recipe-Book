@@ -1,27 +1,27 @@
 package com.dim.recipes.data
 
-import com.dim.recipes.models.ApiRecipe
-import com.dim.recipes.models.ApiRecipeList
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import com.dim.recipes.models.RecipeList
+import kotlinx.coroutines.*
 
 class RecipeRepository {
     companion object {
         var client: ApiRequestRandomRecipe = RetrofitClient.retrofit
-        var apiRecipeList: ApiRecipeList = ApiRecipeList(ArrayList<ApiRecipe>())
+        var recipeList = RecipeList()
+
+        val handler = CoroutineExceptionHandler { _, exception ->
+            println("CoroutineExceptionHandler got $exception")
+        }
 
         fun retrieveRandomRecipe() {
-            CoroutineScope(Dispatchers.IO).launch {
+            CoroutineScope(Dispatchers.IO + handler).launch {
                 val clientApiRecipeList = client.getRandomRecipe()
-                addRecipe(clientApiRecipeList.get(0))
+                addRetrievedRecipes(clientApiRecipeList.toRecipeList())
             }
         }
 
-        private suspend fun addRecipe(recipe: ApiRecipe) {
+        private suspend fun addRetrievedRecipes(retrievedRecipeList: RecipeList) {
             withContext(Dispatchers.IO) {
-                apiRecipeList.add(recipe)
+                recipeList.addAll(retrievedRecipeList)
             }
         }
     }

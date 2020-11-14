@@ -3,11 +3,13 @@ package com.dim.recipes.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dim.recipes.R
 import com.dim.recipes.models.Recipe
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.layout_recipe_item.view.*
 
 class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -36,11 +38,23 @@ class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         return items.size
     }
 
-    class RecipeViewHolder constructor(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class RecipeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val recipeName = itemView.recipe_name
         val recipeCategory = itemView.recipe_category
         val recipeArea = itemView.recipe_area
         val recipeImage = itemView.recipe_image
+
+        init {
+            itemView.setOnClickListener { v: View ->
+                val position: Int = adapterPosition
+//                Snackbar.make(v, "Click on item $position", Snackbar.LENGTH_LONG)
+//                    .setAction("Action", null).show() // for checking if correct item is clicked
+                val item = items.get(position)
+                v.findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToRecipeFragment(item))
+            }
+
+        }
+
 
         fun bind(recipe: Recipe) {
             val requestOptions = RequestOptions()
