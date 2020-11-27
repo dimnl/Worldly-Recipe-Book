@@ -5,11 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.dim.recipes.R
-import com.dim.recipes.models.Recipe
-import com.google.android.material.snackbar.Snackbar
+import com.dim.recipes.models.recipe.Recipe
+import com.dim.recipes.ui.loadImageIntoImageView
 import kotlinx.android.synthetic.main.layout_recipe_item.view.*
 
 class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -29,7 +27,7 @@ class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is RecipeViewHolder -> {
-                holder.bind(items.get(position))
+                holder.bind(items[position])
             }
         }
     }
@@ -57,14 +55,7 @@ class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
 
         fun bind(recipe: Recipe) {
-            val requestOptions = RequestOptions()
-                .placeholder(R.drawable.ic_internet_recipe)
-                .error(R.drawable.ic_internet_recipe)
-
-            Glide.with(itemView.context)
-                .applyDefaultRequestOptions(requestOptions)
-                .load(recipe.image)
-                .into(recipeImage)
+            loadImageIntoImageView(recipe.image, recipeImage, itemView.context)
 
             recipeName.setText(recipe.name)
             recipeCategory.setText(recipe.category)

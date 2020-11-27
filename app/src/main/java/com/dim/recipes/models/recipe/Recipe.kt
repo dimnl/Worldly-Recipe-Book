@@ -1,4 +1,4 @@
-package com.dim.recipes.models
+package com.dim.recipes.models.recipe
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

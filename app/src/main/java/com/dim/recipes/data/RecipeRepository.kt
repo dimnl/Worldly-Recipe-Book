@@ -1,14 +1,15 @@
 package com.dim.recipes.data
 
-import com.dim.recipes.models.RecipeList
+import com.dim.recipes.data.api.ApiRequestRandomRecipe
+import com.dim.recipes.models.recipe.RecipeList
 import kotlinx.coroutines.*
 
 class RecipeRepository {
     companion object {
-        var client: ApiRequestRandomRecipe = RetrofitClient.retrofit
+        private var client = RetrofitClient.retrofit
         var recipeList = RecipeList()
 
-        val handler = CoroutineExceptionHandler { _, exception ->
+        private val handler = CoroutineExceptionHandler { _, exception ->
             println("CoroutineExceptionHandler got $exception")
         }
 

@@ -1,5 +1,7 @@
-package com.dim.recipes.models
+package com.dim.recipes.models.api
 
+import com.dim.recipes.models.recipe.Recipe
+import com.dim.recipes.models.recipe.RecipeList
 import com.google.gson.annotations.SerializedName
 
 class ApiRecipeList(

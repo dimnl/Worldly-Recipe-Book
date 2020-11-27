@@ -1,7 +1,6 @@
-package com.dim.recipes.data
+package com.dim.recipes.data.api
 
-import com.dim.recipes.models.ApiRecipe
-import com.dim.recipes.models.ApiRecipeList
+import com.dim.recipes.models.api.ApiRecipeList
 import retrofit2.http.GET
 
 interface ApiRequestRandomRecipe {

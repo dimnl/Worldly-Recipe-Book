@@ -1,6 +1,6 @@
 package com.dim.recipes.data
 
-import com.dim.recipes.models.Recipe
+import com.dim.recipes.models.recipe.Recipe
 
 class DummyDataSource {
 // Dataset for testing

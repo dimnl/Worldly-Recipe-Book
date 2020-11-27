@@ -1,4 +1,4 @@
-package com.dim.recipes.models
+package com.dim.recipes.models.api
 
 class ApiRecipe(
     var strMeal: String,

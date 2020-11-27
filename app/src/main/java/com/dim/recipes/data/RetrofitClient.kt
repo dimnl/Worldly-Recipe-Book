@@ -1,6 +1,6 @@
 package com.dim.recipes.data
 
-import com.dim.recipes.R
+import com.dim.recipes.data.api.ApiRequestRandomRecipe
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 

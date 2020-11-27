@@ -23,9 +23,9 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.dim.recipes.ui.notifications.NotificationsFragment"
+        android:name="com.dim.recipes.ui.categories.CategoriesFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_categories" />
 
     <fragment
         android:id="@+id/recipe_fragment"
@@ -34,7 +34,7 @@
         tools:layout="@layout/fragment_recipe">
         <argument
             android:name="recipe"
-            app:argType="com.dim.recipes.models.Recipe"
+            app:argType="com.dim.recipes.models.recipe.Recipe"
         />
     </fragment>
 </navigation>

@@ -38,8 +38,7 @@ class HomeFragment : Fragment() {
             recipeAdapter.submitList(RecipeRepository.recipeList)
         }
 
-//        addDummyDataSet()
-//        recipeAdapter.submitList(RecipeRepository.recipeList)
+//        addDummyDataSet() // to test if adapter is correctly functioning
     }
 
     private fun addDummyDataSet() { // purely for testing

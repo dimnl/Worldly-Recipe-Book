@@ -8,16 +8,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.fragment.navArgs
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.dim.recipes.R
-import com.dim.recipes.models.Recipe
-import kotlinx.android.synthetic.main.layout_recipe_item.view.*
-import org.w3c.dom.Text
 
 class RecipeFragment : Fragment() {
     private val arguments: RecipeFragmentArgs by navArgs()
-    private lateinit var recipe: Recipe
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,21 +26,14 @@ class RecipeFragment : Fragment() {
         val recipeImage: ImageView = root.findViewById(R.id.recipe_image)
         val recipeInstructions: TextView = root.findViewById(R.id.recipe_instructions)
 
-        recipe = arguments.recipe
-        recipeName.setText(recipe.name)
-        recipeCategory.setText(recipe.category)
-        recipeArea.setText(recipe.area)
+        val recipe = arguments.recipe
+        recipeName.text = recipe.name
+        recipeCategory.text = recipe.category
+        recipeArea.text = recipe.area
         recipeInstructions.visibility = View.VISIBLE
-        recipeInstructions.setText(recipe.instructions)
+        recipeInstructions.text = recipe.instructions
 
-        val requestOptions = RequestOptions()
-            .placeholder(R.drawable.ic_internet_recipe)
-            .error(R.drawable.ic_internet_recipe)
-
-        Glide.with(root.context)
-            .applyDefaultRequestOptions(requestOptions)
-            .load(recipe.image)
-            .into(recipeImage)
+        loadImageIntoImageView(recipe.image, recipeImage, root.context)
 
         return root
     }
