@@ -19,6 +19,7 @@
         <activity
             android:name=".ui.SplashActivity"
             android:noHistory="true"
+            android:theme="@style/Theme.Recipes.NoActionBar"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

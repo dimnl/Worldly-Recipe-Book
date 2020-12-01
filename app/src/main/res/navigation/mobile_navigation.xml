@@ -12,20 +12,24 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_recipe_fragment"
-            app:destination="@id/recipe_fragment" />
+            app:destination="@id/recipe_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.dim.recipes.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_categories"
+        android:name="com.dim.recipes.ui.categories.CategoriesFragment"
+        android:label="@string/title_categories"
+        tools:layout="@layout/fragment_categories" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.dim.recipes.ui.categories.CategoriesFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_categories" />
+        android:id="@+id/navigation_account"
+        android:name="com.dim.recipes.ui.account.AccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_account" />
 
     <fragment
         android:id="@+id/recipe_fragment"

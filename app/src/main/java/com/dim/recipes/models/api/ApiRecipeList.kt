@@ -14,6 +14,7 @@ class ApiRecipeList(
         for (apiRecipe in apiRecipes) {
             recipeList.add(
                 Recipe(
+                    apiRecipe.idMeal,
                     apiRecipe.strMeal,
                     apiRecipe.strCategory,
                     apiRecipe.strArea,

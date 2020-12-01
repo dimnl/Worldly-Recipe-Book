@@ -10,7 +10,7 @@ import com.dim.recipes.models.recipe.Recipe
 import com.dim.recipes.ui.loadImageIntoImageView
 import kotlinx.android.synthetic.main.layout_recipe_item.view.*
 
-class RecipeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: List<Recipe> = ArrayList()
 
