@@ -26,5 +26,24 @@ class ApiRecipeList(
 
         return recipeList
     }
+
+    fun toRecipeByCategoryList(): RecipeList {
+        val recipeList = RecipeList()
+
+        for (apiRecipe in apiRecipes) {
+            recipeList.add(
+                Recipe(
+                    apiRecipe.idMeal,
+                    apiRecipe.strMeal,
+                    "",
+                    "",
+                    "",
+                    apiRecipe.strMealThumb
+                )
+            )
+        }
+
+        return recipeList
+    }
 }
 

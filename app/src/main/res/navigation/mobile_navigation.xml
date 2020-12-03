@@ -12,33 +12,92 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_navigation_home_to_recipe_fragment"
-            app:destination="@id/recipe_fragment"
+            app:destination="@id/recipe"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipe"
+        android:name="com.dim.recipes.ui.RecipeFragment"
+        android:label="Recipe"
+        tools:layout="@layout/fragment_recipe">
+        <argument
+            android:name="recipe"
+            app:argType="com.dim.recipes.models.recipe.Recipe" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_categories"
         android:name="com.dim.recipes.ui.categories.CategoriesFragment"
         android:label="@string/title_categories"
-        tools:layout="@layout/fragment_categories" />
+        tools:layout="@layout/fragment_categories">
+        <action
+            android:id="@+id/action_navigation_categories_to_recipes_by_category"
+            app:destination="@id/recipes_by_category"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recipes_by_category"
+        android:name="com.dim.recipes.ui.categories.RecipesByCategoryFragment"
+        android:label="{category_name}"
+        tools:layout="@layout/fragment_recipes_by_category">
+        <argument
+            android:name="category_name"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_recipes_by_category_to_recipe"
+            app:destination="@id/recipe"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_account"
         android:name="com.dim.recipes.ui.account.AccountFragment"
         android:label="@string/title_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account">
+        <action
+            android:id="@+id/action_navigation_account_to_login"
+            app:destination="@id/login"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_account_to_logged_in_account"
+            app:destination="@id/logged_in_account"
+            app:popUpTo="@id/navigation_account"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
-        android:id="@+id/recipe_fragment"
-        android:name="com.dim.recipes.ui.RecipeFragment"
-        android:label="Recipe"
-        tools:layout="@layout/fragment_recipe">
-        <argument
-            android:name="recipe"
-            app:argType="com.dim.recipes.models.recipe.Recipe"
-        />
+        android:id="@+id/login"
+        android:name="com.dim.recipes.login.LoginFragment"
+        android:label="@string/title_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_navigation_account"
+            app:destination="@id/navigation_account"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
+
+    <fragment
+        android:id="@+id/logged_in_account"
+        android:name="com.dim.recipes.ui.account.LoggedInAccountFragment"
+        android:label="@string/title_account"
+        tools:layout="@layout/fragment_logged_in_account">
+    </fragment>
+
 </navigation>

@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         tools:context=".ui.RecipeFragment">
 
-
         <include layout="@layout/layout_recipe_item" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

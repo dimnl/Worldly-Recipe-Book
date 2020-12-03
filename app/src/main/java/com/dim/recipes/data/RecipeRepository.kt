@@ -3,6 +3,7 @@ package com.dim.recipes.data
 import com.dim.recipes.api.ApiRequests
 import com.dim.recipes.api.RetrofitClient
 import com.dim.recipes.models.categories.CategoryList
+import com.dim.recipes.models.recipe.Recipe
 import com.dim.recipes.models.recipe.RecipeList
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
@@ -16,37 +17,70 @@ class RecipeRepository {
         private var clientRequest = client.create(ApiRequests::class.java)
         var recipeList = RecipeList()
         var categoryList = CategoryList()
+        var recipeListByCategory = RecipeList()
 
         private val handler = CoroutineExceptionHandler { _, exception ->
             println("CoroutineExceptionHandler got $exception")
         }
 
-        fun retrieveCategories() {
+        fun seedDatabase(recipes: Int) {
+            repeat(recipes) {
+                CoroutineScope(Dispatchers.IO + handler).launch {
+                    retrieveRandomRecipe()
+                }
+            }
+
             CoroutineScope(Dispatchers.IO + handler).launch {
-                val clientApiCategoryList = clientRequest.getCategories()
-                addRetrievedCategories(clientApiCategoryList.toCategoryList())
+                retrieveCategories()
             }
         }
 
+        suspend fun retrieveRandomRecipe() {
+            val clientApiRecipeList = clientRequest.getRandomRecipe()
+            addRetrievedRecipes(clientApiRecipeList.toRecipeList())
+        }
+
+        private suspend fun addRetrievedRecipes(retrievedRecipeList: RecipeList) {
+            withContext(Dispatchers.Main) {
+                recipeList.addAll(retrievedRecipeList)
+            }
+        }
+
+        private suspend fun retrieveCategories() {
+            val clientApiCategoryList = clientRequest.getCategories()
+            addRetrievedCategories(clientApiCategoryList.toCategoryList())
+        }
+
         private suspend fun addRetrievedCategories(retrievedCategoryList: CategoryList) {
-            withContext(Dispatchers.IO) {
-                if (categoryList.isEmpty()) {
+            if (categoryList.isEmpty()) {
+                withContext(Dispatchers.IO) {
                     categoryList.addAll(retrievedCategoryList)
                 }
             }
         }
 
-        fun retrieveRandomRecipe() {
+        suspend fun filterByCategory(category: String) {
             CoroutineScope(Dispatchers.IO + handler).launch {
-                val clientApiRecipeList = clientRequest.getRandomRecipe()
-                addRetrievedRecipes(clientApiRecipeList.toRecipeList())
+                val clientApiRecipeListByCategory = clientRequest.filterByCategory(category)
+                addRetrievedRecipesByCategory(clientApiRecipeListByCategory.toRecipeByCategoryList())
+            }.join()
+        }
+
+        private suspend fun addRetrievedRecipesByCategory(retrievedRecipeListByCategory: RecipeList) {
+            withContext(Dispatchers.Main) {
+                recipeListByCategory.clear()
+                recipeListByCategory.addAll(retrievedRecipeListByCategory)
             }
         }
 
-        private suspend fun addRetrievedRecipes(retrievedRecipeList: RecipeList) {
-            withContext(Dispatchers.IO) {
-                recipeList.addAll(retrievedRecipeList)
-            }
+        suspend fun searchRecipe(recipeName: String): Recipe {
+            val apiRecipeList = clientRequest.searchRecipe(recipeName)
+            return apiRecipeList.toRecipeList()[0]
+        }
+
+        suspend fun lookupRecipe(recipeId: String): Recipe {
+            val apiRecipeList = clientRequest.lookupRecipe(recipeId)
+            return apiRecipeList.toRecipeList()[0]
         }
     }
 }

@@ -7,4 +7,10 @@
     <string name="header_problem">Uh-oh, seems something went wrong...</string>
     <string name="text_problem_internet">There was a problem loading the recipes from the server, are you connected to the internet?</string>
     <string name="title_account">Account</string>
+    <string name="title_login">Login</string>
+
+    <!-- Strings related to login -->
+    <string name="action_sign_in">Sign in or register</string>
+
+
 </resources>

@@ -1,13 +1,20 @@
 package com.dim.recipes.ui.account
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.map
+import com.dim.recipes.models.login.FirebaseUserLiveData
 
 class AccountViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+    enum class AuthenticationState {
+        AUTHENTICATED, UNAUTHENTICATED, INVALID_AUTHENTICATION
     }
-    val text: LiveData<String> = _text
+
+    val authenticationState = FirebaseUserLiveData().map { user ->
+        if (user != null) {
+            AuthenticationState.AUTHENTICATED
+        } else {
+            AuthenticationState.UNAUTHENTICATED
+        }
+    }
 }

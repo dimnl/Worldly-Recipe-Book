@@ -3,13 +3,17 @@ package com.dim.recipes.ui.categories
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.dim.recipes.R
+import com.dim.recipes.data.RecipeRepository
 import com.dim.recipes.models.categories.Category
 import com.dim.recipes.models.categories.CategoryList
 import com.dim.recipes.ui.loadImageIntoImageView
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.layout_category_item.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class CategoriesRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -44,10 +48,13 @@ class CategoriesRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
         init {
             itemView.setOnClickListener { v: View ->
                 val position: Int = adapterPosition
-               Snackbar.make(v, "Click on item $position", Snackbar.LENGTH_LONG)
-                   .setAction("Action", null).show() // for checking if correct item is clicked
+               // Snackbar.make(v, "Click on item $position", Snackbar.LENGTH_LONG)
+               //     .setAction("Action", null).show() // for checking if correct item is clicked
                 val item = items.get(position)
-                // v.findNavController().navigate(HomeFragmentDirections.actionNavigationHomeToRecipeFragment(item))
+                CoroutineScope(Dispatchers.Main).launch{
+                    RecipeRepository.filterByCategory(item.name)
+                    v.findNavController().navigate(CategoriesFragmentDirections.actionNavigationCategoriesToRecipesByCategory(item.name))
+                }
             }
         }
 
