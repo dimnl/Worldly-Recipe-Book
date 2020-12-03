@@ -14,10 +14,30 @@ class ApiRecipeList(
         for (apiRecipe in apiRecipes) {
             recipeList.add(
                 Recipe(
+                    apiRecipe.idMeal,
                     apiRecipe.strMeal,
                     apiRecipe.strCategory,
                     apiRecipe.strArea,
                     apiRecipe.strInstructions,
+                    apiRecipe.strMealThumb
+                )
+            )
+        }
+
+        return recipeList
+    }
+
+    fun toRecipeByCategoryList(): RecipeList {
+        val recipeList = RecipeList()
+
+        for (apiRecipe in apiRecipes) {
+            recipeList.add(
+                Recipe(
+                    apiRecipe.idMeal,
+                    apiRecipe.strMeal,
+                    "",
+                    "",
+                    "",
                     apiRecipe.strMealThumb
                 )
             )

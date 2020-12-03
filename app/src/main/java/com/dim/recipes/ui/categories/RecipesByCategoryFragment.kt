@@ -1,4 +1,4 @@
-package com.dim.recipes.ui.home
+package com.dim.recipes.ui.categories
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,25 +8,24 @@ import androidx.fragment.app.Fragment
 import com.dim.recipes.R
 import com.dim.recipes.data.RecipeRepository
 import com.dim.recipes.ui.TopMarginItemDecoration
-import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_recipes_by_category.*
 
-class HomeFragment : Fragment() {
-
-    private lateinit var homeAdapter: HomeRecyclerAdapter
+class RecipesByCategoryFragment : Fragment() {
+    private lateinit var recipesByCategoryAdapter: RecipesByCategoryRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.fragment_recipes_by_category, container, false)
 
-        homeAdapter = HomeRecyclerAdapter()
-        if (RecipeRepository.recipeList.isNullOrEmpty()) {
-            text_home_header_problem.visibility = View.VISIBLE
-            text_home_problem.visibility = View.VISIBLE
+        recipesByCategoryAdapter = RecipesByCategoryRecyclerAdapter()
+        if (RecipeRepository.recipeListByCategory.isNullOrEmpty()) {
+            text_recipes_by_category_header_problem.visibility = View.VISIBLE
+            text_recipes_by_category_problem.visibility = View.VISIBLE
         } else {
-            homeAdapter.submitList(RecipeRepository.recipeList)
+            recipesByCategoryAdapter.submitList(RecipeRepository.recipeListByCategory)
         }
 
         return root
@@ -38,11 +37,11 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
-        home_recycler_view.apply {
+        recipes_by_category_recycler_view.apply {
             val topMarginItemDecoration = TopMarginItemDecoration(30)
             addItemDecoration(topMarginItemDecoration)
-            adapter = homeAdapter
 
+            adapter = recipesByCategoryAdapter
         }
     }
 }

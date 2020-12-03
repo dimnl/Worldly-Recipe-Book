@@ -17,7 +17,6 @@ class RecipeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_recipe, container, false)
 
         val recipeName: TextView = root.findViewById(R.id.recipe_name)

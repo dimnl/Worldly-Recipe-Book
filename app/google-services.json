@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "498917919576",
+    "firebase_url": "https://recipes-5adfe.firebaseio.com",
+    "project_id": "recipes-5adfe",
+    "storage_bucket": "recipes-5adfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498917919576:android:7b777ec8c760817c32b32d",
+        "android_client_info": {
+          "package_name": "com.dim.recipes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498917919576-7hthpng3k66ml733f0lnr5tg0n7qrpl9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1Ks7a7uLTYuEqMhrL4jCb-ft-R6hBXLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498917919576-7hthpng3k66ml733f0lnr5tg0n7qrpl9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
