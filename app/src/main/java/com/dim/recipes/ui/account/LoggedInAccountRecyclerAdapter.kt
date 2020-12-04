@@ -1,4 +1,4 @@
-package com.dim.recipes.ui.home
+package com.dim.recipes.ui.account
 
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +15,7 @@ import com.dim.recipes.models.recipe.RecipeList
 import com.dim.recipes.ui.loadImageIntoImageView
 import kotlinx.android.synthetic.main.layout_recipe_item.view.*
 
-class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class LoggedInAccountRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = RecipeList()
 
@@ -53,22 +53,19 @@ class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 val position: Int = adapterPosition
                 val item = items.get(position)
                 v.findNavController()
-                    .navigate(HomeFragmentDirections.actionNavigationHomeToRecipeFragment(item))
+                    .navigate(LoggedInAccountFragmentDirections.actionLoggedInAccountToRecipe(item))
             }
-            if (FavouriteRecipeFirebaseDatabase.userLoggedIn) {
-                checkBox.setOnClickListener {
-                    val position: Int = adapterPosition
-                    val item = items.get(position)
-                    val favId = item.id
 
-                    if (checkBox.isChecked) {
-                        FavouriteRecipeFirebaseDatabase.write(favId)
-                    } else if (FavouriteRecipeFirebaseDatabase.favouriteRecipeIdList.contains(favId)) {
-                        FavouriteRecipeFirebaseDatabase.delete(favId)
-                    }
+            checkBox.setOnClickListener {
+                val position: Int = adapterPosition
+                val item = items.get(position)
+                val favId = item.id
+
+                if (checkBox.isChecked) {
+                    FavouriteRecipeFirebaseDatabase.write(favId)
+                } else if (FavouriteRecipeFirebaseDatabase.favouriteRecipeIdList.contains(favId)) {
+                    FavouriteRecipeFirebaseDatabase.delete(favId)
                 }
-            } else {
-                checkBox.visibility = View.GONE
             }
         }
 
@@ -79,10 +76,8 @@ class HomeRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             recipeCategory.text = recipe.category
             recipeArea.text = recipe.area
 
-            if (FavouriteRecipeFirebaseDatabase.userLoggedIn) {
-                if (FavouriteRecipeFirebaseDatabase.favouriteRecipeIdList.contains(recipe.id)) {
-                    checkBox.isChecked = true
-                }
+            if (FavouriteRecipeFirebaseDatabase.favouriteRecipeIdList.contains(recipe.id)) {
+                checkBox.isChecked = true
             }
         }
     }

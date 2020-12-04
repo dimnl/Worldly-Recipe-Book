@@ -42,14 +42,12 @@ class CategoriesRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
     }
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val categoryName = itemView.category_name
-        val categoryImage = itemView.category_image
+        private val categoryName = itemView.category_name
+        private val categoryImage = itemView.category_image
 
         init {
             itemView.setOnClickListener { v: View ->
                 val position: Int = adapterPosition
-               // Snackbar.make(v, "Click on item $position", Snackbar.LENGTH_LONG)
-               //     .setAction("Action", null).show() // for checking if correct item is clicked
                 val item = items.get(position)
                 CoroutineScope(Dispatchers.Main).launch{
                     RecipeRepository.filterByCategory(item.name)
@@ -60,7 +58,7 @@ class CategoriesRecyclerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
         fun bind(category: Category) {
             loadImageIntoImageView(category.image, categoryImage, itemView.context)
-            categoryName.setText(category.name)
+            categoryName.text = category.name
         }
     }
 }

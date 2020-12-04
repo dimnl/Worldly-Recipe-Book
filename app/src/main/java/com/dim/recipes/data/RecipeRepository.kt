@@ -19,7 +19,7 @@ class RecipeRepository {
         var categoryList = CategoryList()
         var recipeListByCategory = RecipeList()
 
-        private val handler = CoroutineExceptionHandler { _, exception ->
+        val handler = CoroutineExceptionHandler { _, exception ->
             println("CoroutineExceptionHandler got $exception")
         }
 

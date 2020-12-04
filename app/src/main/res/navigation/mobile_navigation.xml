@@ -75,13 +75,17 @@
         <action
             android:id="@+id/action_navigation_account_to_logged_in_account"
             app:destination="@id/logged_in_account"
-            app:popUpTo="@id/navigation_account"
-            app:popUpToInclusive="true" />
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 
     <fragment
         android:id="@+id/login"
-        android:name="com.dim.recipes.login.LoginFragment"
+        android:name="com.dim.recipes.ui.account.LoginFragment"
         android:label="@string/title_login"
         tools:layout="@layout/fragment_login">
         <action
@@ -98,6 +102,22 @@
         android:name="com.dim.recipes.ui.account.LoggedInAccountFragment"
         android:label="@string/title_account"
         tools:layout="@layout/fragment_logged_in_account">
+        <action
+            android:id="@+id/action_logged_in_account_to_recipe"
+            app:destination="@id/recipe"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_logged_in_account_to_navigation_account"
+            app:destination="@id/navigation_account"
+            app:popUpTo="@id/mobile_navigation"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
 </navigation>

@@ -17,7 +17,7 @@
 
         <TextView
             android:id="@+id/recipe_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
@@ -25,8 +25,9 @@
             android:textSize="19sp"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/favourite_checkbox"
+            app:layout_constraintHorizontal_bias="0" />
 
         <TextView
             android:id="@+id/recipe_category"
@@ -52,6 +53,16 @@
             android:textSize="15sp"
             app:layout_constraintLeft_toRightOf="@id/recipe_category"
             app:layout_constraintTop_toBottomOf="@id/recipe_name" />
+
+        <CheckBox
+            android:id="@+id/favourite_checkbox"
+            android:button="@drawable/favourite_checkbox_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/recipe_image" />
 
         <ImageView
             android:id="@+id/recipe_image"

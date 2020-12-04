@@ -1,4 +1,4 @@
-package com.dim.recipes.models.login
+package com.dim.recipes.models.api
 
 import androidx.lifecycle.LiveData
 import com.google.firebase.auth.FirebaseAuth

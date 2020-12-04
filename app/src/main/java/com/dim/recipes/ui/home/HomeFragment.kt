@@ -4,14 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.dim.recipes.R
-import com.dim.recipes.data.RecipeRepository
 import com.dim.recipes.ui.TopMarginItemDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
 
+    private lateinit var homeViewModel: HomeViewModel
     private lateinit var homeAdapter: HomeRecyclerAdapter
 
     override fun onCreateView(
@@ -19,14 +21,15 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        homeViewModel =
+            ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         homeAdapter = HomeRecyclerAdapter()
-        if (RecipeRepository.recipeList.isNullOrEmpty()) {
-            text_home_header_problem.visibility = View.VISIBLE
-            text_home_problem.visibility = View.VISIBLE
-        } else {
-            homeAdapter.submitList(RecipeRepository.recipeList)
+        val listSubmitted = homeViewModel.submitListToAdapter(homeAdapter)
+        if (!listSubmitted) {
+            root.findViewById<TextView>(R.id.text_home_header_problem).visibility = View.VISIBLE
+            root.findViewById<TextView>(R.id.text_home_problem).visibility = View.VISIBLE
         }
 
         return root
@@ -39,10 +42,8 @@ class HomeFragment : Fragment() {
 
     private fun initRecyclerView() {
         home_recycler_view.apply {
-            val topMarginItemDecoration = TopMarginItemDecoration(30)
-            addItemDecoration(topMarginItemDecoration)
+            addItemDecoration(TopMarginItemDecoration(30))
             adapter = homeAdapter
-
         }
     }
 }

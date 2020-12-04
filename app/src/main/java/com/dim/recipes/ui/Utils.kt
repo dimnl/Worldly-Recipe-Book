@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dim.recipes.R
 
-fun loadImageIntoImageView(httpImage:String, imageView:ImageView, context:Context){
+fun loadImageIntoImageView(httpImage: String, imageView: ImageView, context: Context) {
     val requestOptions = RequestOptions()
         .placeholder(R.drawable.ic_internet_recipe)
         .error(R.drawable.ic_internet_recipe)
@@ -20,7 +20,7 @@ fun loadImageIntoImageView(httpImage:String, imageView:ImageView, context:Contex
         .into(imageView)
 }
 
-class TopMarginItemDecoration (private val margin: Int) : RecyclerView.ItemDecoration(){
+class TopMarginItemDecoration(private val margin: Int) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
         outRect: Rect,
         view: View,

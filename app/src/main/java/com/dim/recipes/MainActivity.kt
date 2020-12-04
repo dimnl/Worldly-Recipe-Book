@@ -10,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,7 +18,10 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home, R.id.navigation_categories, R.id.navigation_account, R.id.logged_in_account
+                R.id.navigation_home,
+                R.id.navigation_categories,
+                R.id.navigation_account,
+                R.id.logged_in_account
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

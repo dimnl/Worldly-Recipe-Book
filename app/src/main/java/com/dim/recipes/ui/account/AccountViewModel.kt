@@ -2,7 +2,7 @@ package com.dim.recipes.ui.account
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.map
-import com.dim.recipes.models.login.FirebaseUserLiveData
+import com.dim.recipes.models.api.FirebaseUserLiveData
 
 class AccountViewModel : ViewModel() {
 
