@@ -75,12 +75,7 @@
         <action
             android:id="@+id/action_navigation_account_to_logged_in_account"
             app:destination="@id/logged_in_account"
-            app:popUpTo="@id/mobile_navigation"
-            app:popUpToInclusive="true"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"/>
+            app:popUpTo="@id/navigation_home" />
     </fragment>
 
     <fragment
@@ -112,8 +107,7 @@
         <action
             android:id="@+id/action_logged_in_account_to_navigation_account"
             app:destination="@id/navigation_account"
-            app:popUpTo="@id/mobile_navigation"
-            app:popUpToInclusive="true"
+            app:popUpTo="@id/navigation_home"
             app:enterAnim="@anim/slide_in_left"
             app:exitAnim="@anim/slide_out_right"
             app:popEnterAnim="@anim/slide_in_right"
