@@ -6,7 +6,7 @@
 
 #### Demo
 
-**The above requirements and wish list have all been implemented in this [app](https://youtu.be/w6KgzlLudio) (links to a Youtube video showcasing the app). **
+**The above requirements and wish list have all been implemented in this [app](https://youtu.be/w6KgzlLudio) (links to a Youtube video showcasing the app).**
 
 #### Functionalities
 
@@ -44,12 +44,12 @@ In the following picture all navigation actions with its fragments are shown as 
 
 #### Screenshots
 
-<img src="screenshots/Screenshot_app_light1.jpg" width="128" />
-<img src="screenshots/Screenshot_app_light2.jpg" width="128" />
-<img src="screenshots/Screenshot_app_light3.jpg" width="128" />
-<img src="screenshots/Screenshot_app_light4.jpg" width="128" />
+<img src="screenshots/Screenshot_app_light1.jpg" width="256" />
+<img src="screenshots/Screenshot_app_light2.jpg" width="256" />
+<img src="screenshots/Screenshot_app_light3.jpg" width="256" />
+<img src="screenshots/Screenshot_app_light4.jpg" width="256" />
 
-<img src="screenshots/Screenshot_app_dark1.jpg" width="128" />
-<img src="screenshots/Screenshot_app_dark2.jpg" width="128" />
-<img src="screenshots/Screenshot_app_dark3.jpg" width="128" />
-<img src="screenshots/Screenshot_app_dark4.jpg" width="128" />
+<img src="screenshots/Screenshot_app_dark1.jpg" width="256" />
+<img src="screenshots/Screenshot_app_dark2.jpg" width="256" />
+<img src="screenshots/Screenshot_app_dark3.jpg" width="256" />
+<img src="screenshots/Screenshot_app_dark4.jpg" width="256" />
